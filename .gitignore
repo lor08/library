@@ -13,3 +13,12 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Project exclude paths
+/_ide_helper.php
+/.phpstorm.meta.php
+/_ide_helper_models.php
+/nohup.out
+/public/cgi-bin
+/public/uploads
+/public/.well-known/*
