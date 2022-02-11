@@ -20,7 +20,7 @@ class BookResource extends JsonResource
             'isbn' => $this->isbn,
             'year' => $this->year,
             'authors' => $this->authors->implode('name', ', '),
-            'image' => "https://picsum.photos/200/300?random=" . $this->id,
+            'image' => "https://covers.openlibrary.org/b/isbn/" . $this->isbn . ".jpg",
             'created_at' => (string) $this->created_at,
         ];
     }

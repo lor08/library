@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TopAuthorResource extends JsonResource
+class TopDiskResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,7 @@ class TopAuthorResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'count' => $this->books_count,
+            'count' => $this->disks_count,
         ];
     }
 }

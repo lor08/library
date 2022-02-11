@@ -4,20 +4,31 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Filters\YearFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AverageRequest;
+use App\Http\Requests\CountByAuthorRequest;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Resources\BookCollection;
+use App\Http\Resources\TopBookResource;
 use App\Interfaces\LibraryItemInterface;
 use App\Models\Book;
-use App\Services\BookService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
+/**
+ *
+ */
 class BookController extends Controller
 {
+    /**
+     * @var LibraryItemInterface
+     */
     private LibraryItemInterface $library;
 
+    /**
+     * @param LibraryItemInterface $library
+     */
     public function __construct(LibraryItemInterface $library)
     {
         $this->library = $library;
@@ -64,8 +75,22 @@ class BookController extends Controller
         return $this->library->store($request->all());
     }
 
-    public function countByAuthor(AverageRequest $request)
+    /**
+     * @param CountByAuthorRequest $request
+     * @return Collection
+     */
+    public function countByAuthor(CountByAuthorRequest $request): Collection
     {
         return $this->library->getCountByAuthor($request->get('author_name'));
+    }
+
+    /**
+     * @return AnonymousResourceCollection
+     */
+    public function topAuthor(): AnonymousResourceCollection
+    {
+        return TopBookResource::collection(
+            $this->library->getTopAuthors('books')
+        );
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AverageRequest;
+use App\Http\Requests\CountByAuthorRequest;
 use App\Services\AuthorService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -22,7 +22,7 @@ class AuthorController extends Controller
         return $this->authorService->getTop();
     }
 
-    public function average(AverageRequest $averageRequest)
+    public function average(CountByAuthorRequest $averageRequest)
     {
         return $this->authorService->getAverageCountBooks($averageRequest);
     }

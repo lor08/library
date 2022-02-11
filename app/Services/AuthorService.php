@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Http\Requests\AverageRequest;
-use App\Http\Resources\TopAuthorResource;
+use App\Http\Requests\CountByAuthorRequest;
+use App\Http\Resources\TopBookResource;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,10 +15,10 @@ class AuthorService
     public function getTop(int $limit = 100): AnonymousResourceCollection
     {
         $top = Author::withCount('books')->orderBy('books_count', 'desc')->limit($limit)->get();
-        return TopAuthorResource::collection($top);
+        return TopBookResource::collection($top);
     }
 
-    public function getAverageCountBooks(AverageRequest $averageRequest)
+    public function getAverageCountBooks(CountByAuthorRequest $averageRequest)
     {
         $author_name = $averageRequest->get('author_name');
 //        $author = Author::where('name', 'like', $author_name)->first();
