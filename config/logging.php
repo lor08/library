@@ -48,6 +48,11 @@ return [
     */
 
     'channels' => [
+        'scanner' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/scanner.log'),
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

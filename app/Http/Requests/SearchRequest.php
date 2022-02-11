@@ -24,7 +24,7 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            "author_full_name" => "required|string",
+            "author_name" => "required|string|min:3|max:255",
         ];
     }
 }

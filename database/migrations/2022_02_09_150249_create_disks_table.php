@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('year');
-            $table->float('price')->unsigned();
+            $table->float('price')->unsigned()->nullable();
             $table->timestamps();
         });
 

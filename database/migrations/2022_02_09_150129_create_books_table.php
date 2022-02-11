@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('isbn');
             $table->integer('year');
-            $table->float('price')->unsigned();
+            $table->float('price')->unsigned()->nullable();
             $table->timestamps();
         });
 

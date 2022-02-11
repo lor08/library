@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AverageRequest;
 use App\Services\AuthorService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class AuthorController extends Controller
 {
@@ -15,9 +17,14 @@ class AuthorController extends Controller
         $this->authorService = $authorService;
     }
 
-    public function top()
+    public function top(): AnonymousResourceCollection
     {
         return $this->authorService->getTop();
+    }
+
+    public function average(AverageRequest $averageRequest)
+    {
+        return $this->authorService->getAverageCountBooks($averageRequest);
     }
 
     /**
@@ -25,9 +32,9 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+//        return $this->authorService->getAuthors($request);
     }
 
     /**

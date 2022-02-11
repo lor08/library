@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Validator;
 
-class ScanRequest extends FormRequest
+class AverageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +24,7 @@ class ScanRequest extends FormRequest
     public function rules()
     {
         return [
-            "isbn" => "required|digits:13",
-            "author_full_name" => "required|string",
-            "title" => "required|string",
-            "year" => "required|digits:4",
+            "author_name" => "required|string|min:3|max:255",
         ];
     }
 }
