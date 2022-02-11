@@ -5,6 +5,7 @@ namespace App\Interfaces;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  *
@@ -19,15 +20,15 @@ interface LibraryItemInterface
 
     /**
      * @param string $author
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function searchByAuthorName(string $author): Collection;
+    public function searchByAuthorName(string $author): LengthAwarePaginator;
 
     /**
      * @param Request $request
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function getFilterList(Request $request): Collection;
+    public function getFilterList(Request $request): LengthAwarePaginator;
 
     /**
      * @param string $author

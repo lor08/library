@@ -4,8 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BookController;
 use App\Http\Controllers\Api\V1\DiskController;
-use App\Http\Controllers\Api\V1\MainController;
-use App\Http\Controllers\Api\V1\AuthorController;
 
 /*
 |--------------------------------------------------------------------------

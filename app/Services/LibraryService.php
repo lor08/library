@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -58,9 +59,9 @@ class LibraryService implements LibraryItemInterface
 
     /**
      * @param string $author
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function searchByAuthorName(string $author): Collection
+    public function searchByAuthorName(string $author): LengthAwarePaginator
     {
         return $this->model->whereHas('authors', function (Builder $query) use ($author) {
             $query->where('name', 'like', "%$author%");
@@ -69,9 +70,9 @@ class LibraryService implements LibraryItemInterface
 
     /**
      * @param Request $request
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function getFilterList(Request $request): Collection
+    public function getFilterList(Request $request): LengthAwarePaginator
     {
         $filter = new YearFilter($request);
         return $this->model->filter($filter)->paginate(self::PER_PAGE);
